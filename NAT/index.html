@@ -48,7 +48,7 @@
             <span>Bloqueado</span>
           </div>
 
-          <svg viewBox="0 0 980 510" xmlns="http://www.w3.org/2000/svg" aria-label="Topología de red">
+          <svg viewBox="0 0 1300 600" xmlns="http://www.w3.org/2000/svg" aria-label="Topología de red">
             <defs>
               <linearGradient id="gradAccent" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stop-color="var(--accent)"/>
@@ -64,42 +64,64 @@
             </defs>
 
             <g id="paths">
-              <path id="p1" class="link" d="M 180 120 C 280 150 420 200 500 210" aria-label="Conexión dispositivo 1 a router"/>
-              <path id="p2" class="link" d="M 160 220 C 280 210 420 210  500 210" aria-label="Conexión dispositivo 2 a router"/>
-              <path id="p3" class="link" d="M 180 320 C 280 260 420 220  500 210" aria-label="Conexión dispositivo 3 a router"/>
-              <path id="p4" class="link" d="M 160 400 C 280 300 420 230  500 210" aria-label="Conexión dispositivo 4 a router"/>
-              <path id="pr" class="link" d="M 560 210 C 690 200 740 210  820 210" aria-label="Conexión router a Internet"/>
+              <!-- Rutas desde dispositivos al router -->
+              <path id="p1" class="link" d="M 230 112 C 350 150 450 200 600 300" aria-label="Conexión dispositivo 1 a router"/>
+              <path id="p2" class="link" d="M 230 192 C 350 220 450 250 600 300" aria-label="Conexión dispositivo 2 a router"/>
+              <path id="p3" class="link" d="M 230 272 C 350 280 450 280 600 300" aria-label="Conexión dispositivo 3 a router"/>
+              <path id="p4" class="link" d="M 230 352 C 350 340 450 320 600 300" aria-label="Conexión dispositivo 4 a router"/>
+              <path id="p5" class="link" d="M 230 432 C 350 380 450 340 600 300" aria-label="Conexión dispositivo 5 a router"/>
+              <path id="p6" class="link" d="M 230 512 C 350 420 450 360 600 300" aria-label="Conexión dispositivo 6 a router"/>
+              <path id="p7" class="link" d="M 230 592 C 350 460 450 380 600 300" aria-label="Conexión dispositivo 7 a router"/>
+              <!-- Ruta del router a Internet -->
+              <path id="pr" class="link" d="M 720 300 C 800 300 850 300 950 300" aria-label="Conexión router a Internet"/>
             </g>
 
-            <g id="dev1" class="node" transform="translate(80,80)" role="group" aria-label="Laptop Oficina">
-              <rect rx="14" ry="14" width="190" height="70"/>
-              <text class="label" x="16" y="30" data-max="158">💻 Laptop Oficina</text>
-              <text class="sub" x="16" y="50" id="dev1Ip">IP: –</text>
+            <!-- Columna Izquierda - Dispositivos 1-4 -->
+            <g id="dev1" class="node" transform="translate(50,80)" role="group" aria-label="Laptop Oficina">
+              <rect rx="14" ry="14" width="180" height="65"/>
+              <text class="label" x="16" y="28" data-max="148">💻 Laptop Oficina</text>
+              <text class="sub" x="16" y="48" id="dev1Ip">IP: –</text>
             </g>
-            <g id="dev2" class="node" transform="translate(80,170)" role="group" aria-label="PC Escritorio">
-              <rect rx="14" ry="14" width="190" height="70"/>
-              <text class="label" x="16" y="30" data-max="158">🖥️ PC Escritorio</text>
-              <text class="sub" x="16" y="50" id="dev2Ip">IP: –</text>
+            <g id="dev2" class="node" transform="translate(50,160)" role="group" aria-label="PC Escritorio">
+              <rect rx="14" ry="14" width="180" height="65"/>
+              <text class="label" x="16" y="28" data-max="148">🖥️ PC Escritorio</text>
+              <text class="sub" x="16" y="48" id="dev2Ip">IP: –</text>
             </g>
-            <g id="dev3" class="node" transform="translate(80,260)" role="group" aria-label="Smartphone">
-              <rect rx="14" ry="14" width="190" height="70"/>
-              <text class="label" x="16" y="30" data-max="158">📱 Smartphone</text>
-              <text class="sub" x="16" y="50" id="dev3Ip">IP: –</text>
+            <g id="dev3" class="node" transform="translate(50,240)" role="group" aria-label="Smartphone">
+              <rect rx="14" ry="14" width="180" height="65"/>
+              <text class="label" x="16" y="28" data-max="148">📱 Smartphone</text>
+              <text class="sub" x="16" y="48" id="dev3Ip">IP: –</text>
             </g>
-            <g id="dev4" class="node" transform="translate(80,350)" role="group" aria-label="Smart TV">
-              <rect rx="14" ry="14" width="190" height="70"/>
-              <text class="label" x="16" y="30" data-max="158">📺 Smart TV</text>
-              <text class="sub" x="16" y="50" id="dev4Ip">IP: –</text>
+            <g id="dev4" class="node" transform="translate(50,320)" role="group" aria-label="Smart TV">
+              <rect rx="14" ry="14" width="180" height="65"/>
+              <text class="label" x="16" y="28" data-max="148">📺 Smart TV</text>
+              <text class="sub" x="16" y="48" id="dev4Ip">IP: –</text>
+            </g>
+            <!-- Columna Derecha - Dispositivos 5-7 -->
+            <g id="dev5" class="node" transform="translate(50,400)" role="group" aria-label="Impresora WiFi">
+              <rect rx="14" ry="14" width="180" height="65"/>
+              <text class="label" x="16" y="28" data-max="148">🖨️ Impresora WiFi</text>
+              <text class="sub" x="16" y="48" id="dev5Ip">IP: –</text>
+            </g>
+            <g id="dev6" class="node" transform="translate(50,480)" role="group" aria-label="Tablet">
+              <rect rx="14" ry="14" width="180" height="65"/>
+              <text class="label" x="16" y="28" data-max="148">📱 Tablet</text>
+              <text class="sub" x="16" y="48" id="dev6Ip">IP: –</text>
+            </g>
+            <g id="dev7" class="node" transform="translate(50,560)" role="group" aria-label="Servidor Local">
+              <rect rx="14" ry="14" width="180" height="65"/>
+              <text class="label" x="16" y="28" data-max="148">🖥️ Servidor Local</text>
+              <text class="sub" x="16" y="48" id="dev7Ip">IP: –</text>
             </g>
 
-            <g id="router" class="node router" transform="translate(500,170)" role="group" aria-label="Router con NAT">
+            <g id="router" class="node router" transform="translate(600,300)" role="group" aria-label="Router con NAT">
               <rect rx="18" ry="18" width="120" height="120"/>
               <text class="label" x="24" y="48">ROUTER</text>
               <text class="sub" x="20" y="72" id="routerNat">NAT: ON</text>
               <text class="sub" x="20" y="92" id="routerPub">IP Pública: –</text>
             </g>
 
-            <g id="internet" class="node internet" transform="translate(820,170)" role="group" aria-label="Internet y servicios">
+            <g id="internet" class="node internet" transform="translate(950,300)" role="group" aria-label="Internet y servicios">
               <ellipse rx="100" ry="60"/>
               <text class="label" x="-35" y="5">INTERNET</text>
               <text class="sub" x="-64" y="25">Servicios / Destinos</text>

@@ -17,7 +17,7 @@ export class NetworkService {
   }
 
   generarIPPrivada(indice) {
-    const ip = `${CONFIG.RED.RANGO_IP_PUBLICA}${CONFIG.RED.INICIO_IP_PRIVADA + indice}`;
+    const ip = `${CONFIG.RED.RANGO_IP_PRIVADA}${CONFIG.RED.INICIO_IP_PRIVADA + indice}`;
     return ip;
   }
 

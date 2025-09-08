@@ -12,8 +12,8 @@ export const CONFIG = {
     IP_PUBLICA_MIN: 1,
     IP_PUBLICA_MAX: 100,
     PUERTO_BASE: 5000,
-    MAX_DISPOSITIVOS: 4,
-    MIN_DISPOSITIVOS: 3
+    MAX_DISPOSITIVOS: 7,
+    MIN_DISPOSITIVOS: 1
   },
 
   ANIMACION: {
@@ -36,25 +36,25 @@ export const CONFIG = {
   },
 
   SVG: {
-    CAJA_VISTA: '0 0 980 510',
+    CAJA_VISTA: '0 0 1300 600',
     DISPOSITIVO: {
-      ANCHO: 190,
-      ALTO: 70,
-      X_IZQUIERDA: 80,
-      Y_SUPERIOR: 90,
-      Y_INFERIOR: 400
+      ANCHO: 180,
+      ALTO: 65,
+      X_IZQUIERDA: 50,
+      Y_SUPERIOR: 80,
+      Y_INFERIOR: 560
     },
     ROUTER: {
       ANCHO: 120,
       ALTO: 120,
-      X: 500,
-      Y: 170
+      X: 600,
+      Y: 300
     },
     INTERNET: {
       RADIO_X: 100,
       RADIO_Y: 60,
-      X: 820,
-      Y: 170
+      X: 950,
+      Y: 300
     }
   },
 
@@ -146,10 +146,10 @@ export const CONFIG = {
     TABLA_NAT: '#natTable tbody',
     
     SVG: 'svg',
-    RUTAS: ['#p1', '#p2', '#p3', '#p4'],
+    RUTAS: ['#p1', '#p2', '#p3', '#p4', '#p5', '#p6', '#p7'],
     ENLACE_RI: '#pr',
-    GRUPOS_DISPOSITIVOS: ['#dev1', '#dev2', '#dev3', '#dev4'],
-    IPS_DISPOSITIVOS: ['#dev1Ip', '#dev2Ip', '#dev3Ip', '#dev4Ip'],
+    GRUPOS_DISPOSITIVOS: ['#dev1', '#dev2', '#dev3', '#dev4', '#dev5', '#dev6', '#dev7'],
+    IPS_DISPOSITIVOS: ['#dev1Ip', '#dev2Ip', '#dev3Ip', '#dev4Ip', '#dev5Ip', '#dev6Ip', '#dev7Ip'],
     NODO_ROUTER: '#router',
     NODO_INTERNET: '#internet'
   },

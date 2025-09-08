@@ -140,7 +140,7 @@ export class SVGService {
 
     for (let i = 0; i < cantidad && i < this.ipsDispositivos.length; i++) {
       if (this.ipsDispositivos[i]) {
-        this.ipsDispositivos[i].textContent = `IP: 192.168.1.${10 + i}`;
+        this.ipsDispositivos[i].textContent = `IP: ${CONFIG.RED.RANGO_IP_PRIVADA}${CONFIG.RED.INICIO_IP_PRIVADA + i}`;
       }
     }
 

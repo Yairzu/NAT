@@ -121,7 +121,8 @@ export class AnimationService {
     const elipse = nodoInternet.querySelector('ellipse');
     const radioX = Number(elipse.getAttribute('rx'));
     
-    const xContacto = parseFloat(x) - radioX;
+    // Posicionar el efecto en el centro del nodo Internet para mejor visibilidad
+    const xContacto = parseFloat(x);
     const yContacto = parseFloat(y);
 
     const anillo = this.crearAnilloOndulacion(xContacto, yContacto);
@@ -139,18 +140,19 @@ export class AnimationService {
     const anillo = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     anillo.setAttribute('cx', x);
     anillo.setAttribute('cy', y);
-    anillo.setAttribute('r', '6');
-    anillo.setAttribute('fill', 'none');
+    anillo.setAttribute('r', '12');
+    anillo.setAttribute('fill', 'var(--ok)');
+    anillo.setAttribute('fill-opacity', '0.4');
     anillo.setAttribute('stroke', 'var(--ok)');
-    anillo.setAttribute('stroke-width', '2');
+    anillo.setAttribute('stroke-width', '4');
     anillo.style.display = 'block';
     anillo.style.visibility = 'visible';
     anillo.style.opacity = '1';
 
     const animacionRadio = document.createElementNS('http://www.w3.org/2000/svg', 'animate');
     animacionRadio.setAttribute('attributeName', 'r');
-    animacionRadio.setAttribute('from', '6');
-    animacionRadio.setAttribute('to', '28');
+    animacionRadio.setAttribute('from', '12');
+    animacionRadio.setAttribute('to', '50');
     animacionRadio.setAttribute('dur', '0.8s');
     animacionRadio.setAttribute('fill', 'freeze');
 
@@ -182,8 +184,8 @@ export class AnimationService {
     }
 
     const [, x, y] = coincidenciaTraduccion;
-    const xExplosion = parseFloat(x) + 126;
-    const yExplosion = parseFloat(y) + 28;
+    const xExplosion = parseFloat(x) + 60;
+    const yExplosion = parseFloat(y) + 60;
 
     const textoExplosion = this.crearTextoExplosion(xExplosion, yExplosion);
     this.svg.appendChild(textoExplosion);
@@ -219,18 +221,31 @@ export class AnimationService {
       return;
     }
 
-    const cajaSVG = this.svg.getBoundingClientRect();
-    const cajaRouter = nodoRouter.getBBox();
-    const x = cajaRouter.x + cajaRouter.width + 6;
-    const y = cajaRouter.y + 24;
+    const transformacion = nodoRouter.getAttribute('transform') || '';
+    const coincidenciaTraduccion = /translate\(([-\d.]+)\s*,\s*([-\d.]+)\)/.exec(transformacion);
+    
+    if (!coincidenciaTraduccion) {
+      logger.error('No se pudo analizar la transformación del nodo de router');
+      return;
+    }
 
-    const insignia = document.createElement('div');
-    insignia.className = 'port-badge';
-    insignia.style.left = (cajaSVG.left + (x / this.svg.viewBox.baseVal.width) * cajaSVG.width) + 'px';
-    insignia.style.top = (cajaSVG.top + (y / this.svg.viewBox.baseVal.height) * cajaSVG.height) + 'px';
+    const [, x, y] = coincidenciaTraduccion;
+    const xInsignia = parseFloat(x) + 130;
+    const yInsignia = parseFloat(y) + 20;
+
+    const insignia = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    insignia.setAttribute('x', xInsignia);
+    insignia.setAttribute('y', yInsignia);
+    insignia.setAttribute('fill', 'var(--ok)');
+    insignia.setAttribute('font-size', '12');
+    insignia.setAttribute('font-weight', 'bold');
+    insignia.setAttribute('text-anchor', 'start');
+    insignia.style.display = 'block';
+    insignia.style.visibility = 'visible';
+    insignia.style.opacity = '1';
     insignia.textContent = 'NAT: ' + texto;
     
-    document.body.appendChild(insignia);
+    this.svg.appendChild(insignia);
 
     setTimeout(() => {
       if (insignia.parentNode) {

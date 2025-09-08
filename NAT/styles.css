@@ -561,3 +561,90 @@ tbody tr:hover {
   white-space: nowrap;
   border: 0;
 }
+
+/* Mejoras adicionales para el layout organizado */
+.node rect {
+  rx: 16;
+  ry: 16;
+}
+
+.node:hover rect {
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+
+.link {
+  stroke-dasharray: 8,6;
+  opacity: 0.8;
+}
+
+.link:hover {
+  opacity: 1;
+  stroke-width: 3;
+}
+
+/* Animación suave para las conexiones */
+@keyframes connectionFlow {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 20; }
+}
+
+.link.active {
+  animation: connectionFlow 1.5s linear infinite;
+}
+
+/* Mejoras para dispositivos específicos */
+.node[aria-label*="Laptop"] rect { stroke: #22d3ee; }
+.node[aria-label*="PC"] rect { stroke: #60a5fa; }
+.node[aria-label*="Smartphone"] rect { stroke: #28d07f; }
+.node[aria-label*="TV"] rect { stroke: #ffb36b; }
+.node[aria-label*="Impresora"] rect { stroke: #ff5577; }
+.node[aria-label*="Tablet"] rect { stroke: #a78bfa; }
+.node[aria-label*="Servidor"] rect { stroke: #f59e0b; }
+
+/* Estilos para elementos de animación */
+text[fill="var(--ok)"] {
+  filter: drop-shadow(0 2px 4px rgba(40, 208, 127, 0.3));
+  animation: fadeInOut 2s ease-in-out;
+}
+
+text[fill="var(--bad)"] {
+  filter: drop-shadow(0 2px 4px rgba(255, 85, 119, 0.3));
+  animation: fadeInOut 2s ease-in-out;
+}
+
+circle[stroke="var(--ok)"] {
+  filter: drop-shadow(0 2px 4px rgba(40, 208, 127, 0.4));
+}
+
+/* Efecto de ondulación mejorado */
+circle[fill="var(--ok)"] {
+  filter: drop-shadow(0 0 12px rgba(40, 208, 127, 0.8));
+  animation: pulseGlow 0.8s ease-out;
+}
+
+@keyframes pulseGlow {
+  0% { 
+    filter: drop-shadow(0 0 8px rgba(40, 208, 127, 1));
+    transform: scale(0.3);
+  }
+  30% { 
+    filter: drop-shadow(0 0 20px rgba(40, 208, 127, 1));
+    transform: scale(1.5);
+  }
+  70% { 
+    filter: drop-shadow(0 0 15px rgba(40, 208, 127, 0.8));
+    transform: scale(1.2);
+  }
+  100% { 
+    filter: drop-shadow(0 0 8px rgba(40, 208, 127, 0.3));
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: scale(0.8); }
+  20% { opacity: 1; transform: scale(1.1); }
+  80% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.9); }
+}
