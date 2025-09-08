@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Simulador NAT — PRO </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Simulador interactivo de NAT (Network Address Translation) con visualización en tiempo real" />
+  <meta name="keywords" content="NAT, Network Address Translation, simulador, red, internet, router" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-mode="nat">
+  <div class="container">
+    <header class="toolbar" role="banner">
+      <div class="title">
+        <span style="font-size: var(--font-size-xxl)">🛰️ Simulador de NAT — PRO</span>
+        <span class="pill">Conexión a Internet perfecta</span>
+      </div>
+      <div class="actions">
+        <div class="mode-switch" role="tablist" aria-label="Seleccionar modo de simulación">
+          <button id="btnNat" class="mode-btn active" role="tab" aria-selected="true" aria-controls="simulation-content">
+            Con NAT
+          </button>
+          <button id="btnNoNat" class="mode-btn" role="tab" aria-selected="false" aria-controls="simulation-content">
+            Sin NAT
+          </button>
+        </div>
+        <button id="btnSim" class="btn primary" aria-describedby="sim-description">
+          ▶ Ejecutar simulación
+        </button>
+        <button id="btnClear" class="btn" aria-describedby="clear-description">
+          🧹 Limpiar
+        </button>
+      </div>
+    </header>
+
+    <main class="grid" id="simulation-content">
+      <section class="card" aria-labelledby="vizTitle">
+        <h3 id="vizTitle">Visualización de la red</h3>
+        <div class="viz-wrap" id="viz" role="img" aria-label="Topología de red con dispositivos, router e Internet">
+          <div class="viz-bg"></div>
+          <div class="viz-grid"></div>
+          <div class="legend" role="list" aria-label="Leyenda de estados">
+            <div class="dot t" role="listitem"></div>
+            <span>Traducción NAT</span>
+            <div class="dot ok" role="listitem"></div>
+            <span>Entrega OK</span>
+            <div class="dot bad" role="listitem"></div>
+            <span>Bloqueado</span>
+          </div>
+
+          <svg viewBox="0 0 980 510" xmlns="http://www.w3.org/2000/svg" aria-label="Topología de red">
+            <defs>
+              <linearGradient id="gradAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="var(--accent)"/>
+                <stop offset="100%" stop-color="var(--accent-2)"/>
+              </linearGradient>
+              <filter id="glowAccent" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="2.2" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+
+            <g id="paths">
+              <path id="p1" class="link" d="M 180 120 C 280 150 420 200 500 210" aria-label="Conexión dispositivo 1 a router"/>
+              <path id="p2" class="link" d="M 160 220 C 280 210 420 210  500 210" aria-label="Conexión dispositivo 2 a router"/>
+              <path id="p3" class="link" d="M 180 320 C 280 260 420 220  500 210" aria-label="Conexión dispositivo 3 a router"/>
+              <path id="p4" class="link" d="M 160 400 C 280 300 420 230  500 210" aria-label="Conexión dispositivo 4 a router"/>
+              <path id="pr" class="link" d="M 560 210 C 690 200 740 210  820 210" aria-label="Conexión router a Internet"/>
+            </g>
+
+            <g id="dev1" class="node" transform="translate(80,80)" role="group" aria-label="Laptop Oficina">
+              <rect rx="14" ry="14" width="190" height="70"/>
+              <text class="label" x="16" y="30" data-max="158">💻 Laptop Oficina</text>
+              <text class="sub" x="16" y="50" id="dev1Ip">IP: –</text>
+            </g>
+            <g id="dev2" class="node" transform="translate(80,170)" role="group" aria-label="PC Escritorio">
+              <rect rx="14" ry="14" width="190" height="70"/>
+              <text class="label" x="16" y="30" data-max="158">🖥️ PC Escritorio</text>
+              <text class="sub" x="16" y="50" id="dev2Ip">IP: –</text>
+            </g>
+            <g id="dev3" class="node" transform="translate(80,260)" role="group" aria-label="Smartphone">
+              <rect rx="14" ry="14" width="190" height="70"/>
+              <text class="label" x="16" y="30" data-max="158">📱 Smartphone</text>
+              <text class="sub" x="16" y="50" id="dev3Ip">IP: –</text>
+            </g>
+            <g id="dev4" class="node" transform="translate(80,350)" role="group" aria-label="Smart TV">
+              <rect rx="14" ry="14" width="190" height="70"/>
+              <text class="label" x="16" y="30" data-max="158">📺 Smart TV</text>
+              <text class="sub" x="16" y="50" id="dev4Ip">IP: –</text>
+            </g>
+
+            <g id="router" class="node router" transform="translate(500,170)" role="group" aria-label="Router con NAT">
+              <rect rx="18" ry="18" width="120" height="120"/>
+              <text class="label" x="24" y="48">ROUTER</text>
+              <text class="sub" x="20" y="72" id="routerNat">NAT: ON</text>
+              <text class="sub" x="20" y="92" id="routerPub">IP Pública: –</text>
+            </g>
+
+            <g id="internet" class="node internet" transform="translate(820,170)" role="group" aria-label="Internet y servicios">
+              <ellipse rx="100" ry="60"/>
+              <text class="label" x="-35" y="5">INTERNET</text>
+              <text class="sub" x="-64" y="25">Servicios / Destinos</text>
+            </g>
+          </svg>
+        </div>
+      </section>
+
+      <aside class="stack">
+        <section class="card" aria-labelledby="infoTitle">
+          <h3 id="infoTitle">Información de la simulación</h3>
+          <div class="kv">
+            <div class="item">
+              <span class="k">Modo</span>
+              <span class="v" id="kvModo">Con NAT</span>
+            </div>
+            <div class="item">
+              <span class="k">IP Pública</span>
+              <span class="v" id="kvPub">–</span>
+            </div>
+            <div class="item">
+              <span class="k">Traducciones</span>
+              <span class="v" id="kvPairs">0</span>
+            </div>
+            <div class="item">
+              <span class="k">Dispositivos</span>
+              <span class="v" id="kvDevs">0</span>
+            </div>
+          </div>
+          <p class="hint" id="kvHint">
+            En NAT, múltiples IP privadas comparten una IP pública usando puertos diferentes (PAT).
+          </p>
+        </section>
+
+        <section class="card" aria-labelledby="natTableTitle">
+          <h3 id="natTableTitle">Tabla de traducción (NAT)</h3>
+          <table class="mini-table" id="natTable" role="table" aria-label="Tabla de traducciones NAT">
+            <thead>
+              <tr>
+                <th scope="col">Privada:Puerto</th>
+                <th scope="col">→</th>
+                <th scope="col">Pública:Puerto</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="3" style="color: var(--muted); padding: 12px">
+                  Sin datos aún
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="hint">
+            En modo <b>Sin NAT</b> las IP privadas (RFC1918) no son ruteables en Internet.
+          </p>
+        </section>
+      </aside>
+    </main>
+
+    <section class="table-wrap" aria-labelledby="tblTitle">
+      <h3 id="tblTitle" class="sr-only">Resultados de la simulación</h3>
+      <table id="tabla" role="table" aria-label="Resultados detallados de la simulación">
+        <thead>
+          <tr>
+            <th scope="col">Dispositivo</th>
+            <th scope="col">IP Privada</th>
+            <th scope="col">Solicitud</th>
+            <th scope="col">IP Pública Asignada</th>
+            <th scope="col">Puerto</th>
+            <th scope="col">Respuesta</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <div class="mode-badge" id="modeBadge" role="status" aria-live="polite">Con NAT</div>
+  </div>
+
+  <div class="sr-only">
+    <div id="sim-description">Ejecuta una nueva simulación con los dispositivos seleccionados</div>
+    <div id="clear-description">Limpia todos los resultados y reinicia la simulación</div>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
