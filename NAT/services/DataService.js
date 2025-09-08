@@ -51,7 +51,7 @@ export class DataService {
     const esModoNAT = modo === 'nat';
     
     this.elementosPanel.modo.textContent = esModoNAT ? 'Con NAT' : 'Sin NAT';
-    this.elementosPanel.ipPublica.textContent = ipPublica || CONFIG.MENSAJES.MARCADORES.MARCADOR_IP;
+    this.elementosPanel.ipPublica.textContent = ipPublica || '–';
     this.elementosPanel.pares.textContent = pares;
     this.elementosPanel.dispositivos.textContent = dispositivos;
     
@@ -73,7 +73,7 @@ export class DataService {
       this.cuerpoTablaNAT.innerHTML = `
         <tr>
           <td colspan="3" style="color: var(--muted); padding: 12px">
-            ${CONFIG.MENSAJES.MARCADORES.SIN_DATOS}
+            Sin datos aún
           </td>
         </tr>
       `;
@@ -102,14 +102,14 @@ export class DataService {
 
   crearFilaTabla(resultado) {
     const fila = document.createElement('tr');
-    const claseEstado = resultado.success ? CONFIG.CLASES.ESTADO_OK : CONFIG.CLASES.ESTADO_MALO;
+    const claseEstado = resultado.success ? 'status-ok' : 'status-bad';
     
     fila.innerHTML = `
       <td>${resultado.device.name}</td>
       <td>${resultado.privateIP}</td>
       <td>${resultado.request}</td>
-      <td>${resultado.publicIP || CONFIG.MENSAJES.MARCADORES.MARCADOR_IP}</td>
-      <td>${resultado.port || CONFIG.MENSAJES.MARCADORES.MARCADOR_IP}</td>
+      <td>${resultado.publicIP || '–'}</td>
+      <td>${resultado.port || '–'}</td>
       <td class="${claseEstado}">${resultado.response}</td>
     `;
     
@@ -152,7 +152,7 @@ export class DataService {
           ipPublica: fila.cells[3]?.textContent || '',
           puerto: fila.cells[4]?.textContent || '',
           respuesta: fila.cells[5]?.textContent || '',
-          exito: fila.cells[5]?.classList.contains(CONFIG.CLASES.ESTADO_OK) || false
+          exito: fila.cells[5]?.classList.contains('status-ok') || false
         }))
       },
       tablaNAT: {

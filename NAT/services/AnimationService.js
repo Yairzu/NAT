@@ -16,7 +16,6 @@ export class AnimationService {
   animarPorRuta(ruta, color, duracion = CONFIG.ANIMACION.DURACION.NORMAL, alFinalizar = null) {
     return new Promise((resolver) => {
       if (!Validator.validarElemento(ruta, 'path')) {
-        logger.error('Elemento de ruta inválido para animación');
         resolver();
         return;
       }
@@ -24,7 +23,7 @@ export class AnimationService {
       const idAnimacion = `animacion_${Date.now()}_${Math.random()}`;
       this.animacionesActivas.add(idAnimacion);
 
-      const particulas = CONFIG.ANIMACION.PARTICULAS;
+      const particulas = { CANTIDAD: 3, TAMANOS: [6, 5, 4], OPACIDADES: [1, 0.7, 0.45], RETRASOS: [0, 0.08, 0.16] };
       const elementosCreados = [];
 
       particulas.RETRASOS.forEach((retraso, indice) => {

@@ -2,32 +2,29 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Simulador NAT — PRO </title>
+  <title>Simulador NAT</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Simulador interactivo de NAT (Network Address Translation) con visualización en tiempo real" />
-  <meta name="keywords" content="NAT, Network Address Translation, simulador, red, internet, router" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body data-mode="nat">
   <div class="container">
     <header class="toolbar" role="banner">
       <div class="title">
-        <span style="font-size: var(--font-size-xxl)">🛰️ Simulador de NAT — PRO</span>
-        <span class="pill">Conexión a Internet perfecta</span>
+        <span style="font-size: var(--font-size-xxl)">🛰️ Simulador de NAT</span>
       </div>
       <div class="actions">
-        <div class="mode-switch" role="tablist" aria-label="Seleccionar modo de simulación">
-          <button id="btnNat" class="mode-btn active" role="tab" aria-selected="true" aria-controls="simulation-content">
+        <div class="mode-switch">
+          <button id="btnNat" class="mode-btn active">
             Con NAT
           </button>
-          <button id="btnNoNat" class="mode-btn" role="tab" aria-selected="false" aria-controls="simulation-content">
+          <button id="btnNoNat" class="mode-btn">
             Sin NAT
           </button>
         </div>
-        <button id="btnSim" class="btn primary" aria-describedby="sim-description">
+        <button id="btnSim" class="btn primary">
           ▶ Ejecutar simulación
         </button>
-        <button id="btnClear" class="btn" aria-describedby="clear-description">
+        <button id="btnClear" class="btn">
           🧹 Limpiar
         </button>
       </div>
@@ -201,10 +198,6 @@
     <div class="mode-badge" id="modeBadge" role="status" aria-live="polite">Con NAT</div>
   </div>
 
-  <div class="sr-only">
-    <div id="sim-description">Ejecuta una nueva simulación con los dispositivos seleccionados</div>
-    <div id="clear-description">Limpia todos los resultados y reinicia la simulación</div>
-  </div>
 
   <script type="module" src="main.js"></script>
 </body>

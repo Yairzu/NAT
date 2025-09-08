@@ -91,13 +91,9 @@ export class NetworkService {
 
   generarRespuesta(dispositivo, ipPrivada, conNAT) {
     if (conNAT) {
-      return CONFIG.MENSAJES.NAT.EXITO
-        .replace('{request}', dispositivo.request)
-        .replace('{device}', dispositivo.name)
-        .replace('{ip}', ipPrivada);
+      return `Respuesta desde Internet para ${dispositivo.request} → entregada a ${dispositivo.name} (${ipPrivada})`;
     } else {
-      return CONFIG.MENSAJES.SIN_NAT.ERROR
-        .replace('{ip}', ipPrivada);
+      return `Bloqueado: dirección privada ${ipPrivada} no ruteable en Internet (RFC1918)`;
     }
   }
 

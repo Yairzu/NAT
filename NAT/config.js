@@ -1,8 +1,7 @@
 export const CONFIG = {
   APLICACION: {
-    NOMBRE: 'Simulador de NAT — PRO',
-    VERSION: '2.0.0',
-    DESCRIPCION: 'Conexión a Internet perfecta'
+    NOMBRE: 'Simulador de NAT',
+    VERSION: '2.0.0'
   },
 
   RED: {
@@ -24,14 +23,7 @@ export const CONFIG = {
     },
     RETRASO: {
       ESCALONADO_DISPOSITIVO: 360,
-      ESCALONADO_PARTICULA: 80,
       RETRASO_EXPLOSION: 160
-    },
-    PARTICULAS: {
-      CANTIDAD: 3,
-      TAMANOS: [6, 5, 4],
-      OPACIDADES: [1, 0.7, 0.45],
-      RETRASOS: [0, 0.08, 0.16]
     }
   },
 
@@ -105,25 +97,16 @@ export const CONFIG = {
 
   MENSAJES: {
     NAT: {
-      PISTA: 'En NAT, múltiples IP privadas comparten una IP pública usando puertos diferentes (PAT).',
-      EXITO: 'Respuesta desde Internet para {request} → entregada a {device} ({ip})'
+      PISTA: 'En NAT, múltiples IP privadas comparten una IP pública usando puertos diferentes (PAT).'
     },
     SIN_NAT: {
-      PISTA: 'Sin NAT, las IP privadas (RFC1918) no atraviesan a Internet: el router las bloquea.',
-      ERROR: 'Bloqueado: dirección privada {ip} no ruteable en Internet (RFC1918)'
-    },
-    MARCADORES: {
-      SIN_DATOS: 'Sin datos aún',
-      MARCADOR_IP: '–'
+      PISTA: 'Sin NAT, las IP privadas (RFC1918) no atraviesan a Internet: el router las bloquea.'
     }
   },
 
   CLASES: {
     ACTIVO: 'active',
-    OCULTO: 'hidden',
-    PULSO: 'pulse',
-    ESTADO_OK: 'status-ok',
-    ESTADO_MALO: 'status-bad'
+    PULSO: 'pulse'
   },
 
   SELECTORES: {
@@ -156,9 +139,6 @@ export const CONFIG = {
 
   ERRORES: {
     MODO_INVALIDO: 'Modo inválido especificado',
-    DISPOSITIVO_NO_ENCONTRADO: 'Dispositivo no encontrado',
-    ELEMENTO_SVG_FALTANTE: 'Elemento SVG requerido no encontrado',
-    ANIMACION_FALLO: 'Error en animación',
     CONFIGURACION_INVALIDA: 'Configuración inválida'
   }
 };
@@ -166,10 +146,7 @@ export const CONFIG = {
 export const CONFIGURACION_POR_DEFECTO = {
   modo: 'nat',
   inicioAutomatico: true,
-  mostrarAnimaciones: true,
-  cantidadDispositivos: null,
-  dispositivosPersonalizados: [],
-  tema: 'dark'
+  mostrarAnimaciones: true
 };
 
 export const REGLAS_VALIDACION = {
